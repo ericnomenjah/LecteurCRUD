@@ -14,7 +14,6 @@ public class TiaBokyApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(TiaBokyApplication.class.getResource("login.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 520, 400);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();
     }

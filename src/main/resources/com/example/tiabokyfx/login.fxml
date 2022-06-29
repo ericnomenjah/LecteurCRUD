@@ -15,7 +15,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tiabokyfx.Controller.LoginController">
    <left>
       <AnchorPane prefHeight="407.0" prefWidth="228.0" style="-fx-background-color: rgb(47, 46, 65);" BorderPane.alignment="CENTER">
          <children>
@@ -42,7 +42,7 @@
    <right>
       <AnchorPane prefHeight="407.0" prefWidth="332.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="57.0" layoutY="35.0" prefHeight="26.0" prefWidth="185.0" text="Authentification" textAlignment="CENTER" textFill="#2f2e41">
+            <Label alignment="CENTER" layoutX="57.0" layoutY="19.0" prefHeight="26.0" prefWidth="185.0" text="Authentification" textAlignment="CENTER" textFill="#2f2e41">
                <font>
                   <Font name="Verdana Bold" size="18.0" />
                </font>
@@ -50,33 +50,34 @@
                   <InnerShadow />
                </effect>
             </Label>
-            <Label alignment="CENTER" layoutY="190.0" prefHeight="26.0" prefWidth="90.0" text="Username" textAlignment="CENTER" textFill="#2f2e41">
+            <Label alignment="CENTER" layoutY="217.0" prefHeight="26.0" prefWidth="90.0" text="Username" textAlignment="CENTER" textFill="#2f2e41">
                <font>
                   <Font name="Verdana Bold" size="10.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="4.0" layoutY="249.0" prefHeight="26.0" prefWidth="89.0" text="Password" textAlignment="CENTER" textFill="#2f2e41">
+            <Label alignment="CENTER" layoutX="4.0" layoutY="260.0" prefHeight="26.0" prefWidth="89.0" text="Password" textAlignment="CENTER" textFill="#2f2e41">
                <font>
                   <Font name="Verdana Bold" size="10.0" />
                </font>
             </Label>
-            <TextField fx:id="usernameField" layoutX="90.0" layoutY="190.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" style="-fx-border-color: transparent;">
+            <TextField fx:id="usernameField" layoutX="90.0" layoutY="217.0" prefHeight="26.0" prefWidth="190.0" promptText="Username" style="-fx-border-color: transparent;">
                <effect>
                   <Glow />
                </effect>
             </TextField>
-            <PasswordField fx:id="passwordField" layoutX="94.0" layoutY="248.0" prefHeight="26.0" prefWidth="186.0" promptText="Password" style="-fx-border-color: transparent;">
+            <PasswordField fx:id="passwordField" layoutX="94.0" layoutY="259.0" prefHeight="26.0" prefWidth="186.0" promptText="Password" style="-fx-border-color: transparent;">
                <effect>
                   <Glow />
                </effect>
             </PasswordField>
-            <Button fx:id="loginButton" layoutX="19.0" layoutY="299.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="258.0" style="-fx-background-color: rgb(47, 46, 65);" text="Login" textFill="WHITE" />
-            <Button fx:id="cancelButton" layoutX="20.0" layoutY="348.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="257.0" style="-fx-background-color: rgb(47, 46, 65);" text="Cancel" textFill="WHITE" />
-            <ImageView fitHeight="125.0" fitWidth="170.0" layoutX="65.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+            <Button fx:id="loginButton" layoutX="19.0" layoutY="307.0" mnemonicParsing="false" onAction="#loginButtonAction" prefHeight="26.0" prefWidth="258.0" style="-fx-background-color: rgb(47, 46, 65);" text="Login" textFill="WHITE" />
+            <Button fx:id="cancelButton" layoutX="20.0" layoutY="348.0" mnemonicParsing="false" onAction="#closeApplication" prefHeight="26.0" prefWidth="257.0" style="-fx-background-color: #ef5350;" text="Cancel" textFill="WHITE" />
+            <ImageView fitHeight="125.0" fitWidth="170.0" layoutX="65.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@images/lock.png" />
                </image>
             </ImageView>
+            <Label fx:id="MessageLabel" contentDisplay="CENTER" layoutX="17.0" layoutY="175.0" prefHeight="34.0" prefWidth="263.0" style="-fx-alignment: CENTER;" text="MESSAGE" textAlignment="CENTER" textFill="#ef5350" visible="false" />
          </children>
       </AnchorPane>
    </right>

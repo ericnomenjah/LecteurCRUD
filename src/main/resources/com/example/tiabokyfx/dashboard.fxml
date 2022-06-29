@@ -13,12 +13,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="685.0" prefWidth="1084.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tiabokyfx.Controller.DashboardController">
+<AnchorPane prefHeight="686.0" prefWidth="1259.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.tiabokyfx.Controller.DashboardController">
    <children>
       <VBox prefHeight="685.0" prefWidth="194.0" style="-fx-background-color: rgb(63, 61, 86);">
          <children>
@@ -65,7 +64,7 @@
             </Button>
          </children>
       </VBox>
-      <TabPane layoutX="201.0" layoutY="8.0" prefHeight="674.0" prefWidth="878.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="201.0" layoutY="8.0" prefHeight="674.0" prefWidth="1049.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="lecteursTab">
             <content>
@@ -76,41 +75,22 @@
                               <Font name="Verdana Bold Italic" size="28.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="lecteursTable" layoutX="3.0" layoutY="291.0" prefHeight="345.0" prefWidth="866.0">
+                        <TableView fx:id="lecteursTable" layoutX="3.0" layoutY="291.0" prefHeight="346.0" prefWidth="1040.0">
                           <columns>
                             <TableColumn fx:id="numeroCol" prefWidth="75.0" text="N°" />
                             <TableColumn fx:id="nomCol" prefWidth="224.0" text="Nom" />
                               <TableColumn fx:id="prenomCol" minWidth="0.0" prefWidth="209.5999755859375" text="Prenom" />
                               <TableColumn fx:id="naissanceCol" prefWidth="84.800048828125" text="Naissance" />
                               <TableColumn fx:id="adresseCol" minWidth="0.0" prefWidth="160.79998779296875" text="Adresse" />
-                              <TableColumn fx:id="telephoneCol" prefWidth="110.4000244140625" text="Telephone" />
+                              <TableColumn fx:id="telephoneCol" prefWidth="133.60003662109375" text="Telephone" />
+                              <TableColumn fx:id="actionsLecteursCol" prefWidth="149.5999755859375" text="Actions" />
                           </columns>
                         </TableView>
-                        <ImageView fitHeight="302.0" fitWidth="368.0" layoutX="496.0" layoutY="16.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="290.0" fitWidth="403.0" layoutX="597.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@images/undraw_Reading_time_re_phf7.png" />
                            </image>
                         </ImageView>
-                        <HBox layoutX="22.0" layoutY="254.0" prefHeight="28.0" prefWidth="406.0" spacing="10.0">
-                           <children>
-                              <Button fx:id="ajouterLecteurBtn" mnemonicParsing="false" onAction="#ajouterLecteurBtnClicked" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: rgb(0, 176, 255)rgb(0, 176, 255);" text="Ajouter" textFill="WHITE">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="modifierLecteur" mnemonicParsing="false" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #00BFA6;" text="Modifier" textFill="WHITE">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                              <Button fx:id="supprimerLecteur" mnemonicParsing="false" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #F50057;" text="Supprimer" textFill="WHITE" />
-                              <Button fx:id="actualiserbtn" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" style="-fx-background-color: #F9F826;" text="Actualiser" textFill="#3f3d56">
-                                 <font>
-                                    <Font size="13.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                        </HBox>
                         <Pane layoutX="7.0" layoutY="55.0" prefHeight="188.0" prefWidth="483.0">
                            <children>
                               <Label layoutX="6.0" layoutY="13.0" prefHeight="17.0" prefWidth="50.0" text="Nom" />
@@ -125,6 +105,11 @@
                               <Label layoutX="11.0" layoutY="153.0" prefHeight="17.0" prefWidth="88.0" text="Telephone" />
                            </children>
                         </Pane>
+                        <Button fx:id="ajouterLecteurBtn" layoutX="14.0" layoutY="254.0" mnemonicParsing="false" onAction="#ajouterLecteurBtnClicked" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: rgb(0, 176, 255)rgb(0, 176, 255);" text="Ajouter" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>

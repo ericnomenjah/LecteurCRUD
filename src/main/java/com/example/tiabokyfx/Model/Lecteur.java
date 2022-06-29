@@ -38,6 +38,21 @@ public class Lecteur {
         }
     }
 
+    public static void deleteLecteur(Lecteur lecteur){
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "DELETE FROM `lecteur` WHERE numero = " + lecteur.getNumero();
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.execute();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Lecteur Supprimer ");
+            alert.show();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
+        }
+    }
+
     public int getNumero() {
         return numero;
     }

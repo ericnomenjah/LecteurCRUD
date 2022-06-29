@@ -7,10 +7,14 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.*;
 
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -54,6 +58,7 @@ public class DashboardController implements Initializable {
     private TableColumn<Lecteur, String> adresseCol;
     @FXML
     private TableColumn<Lecteur, String> telephoneCol;
+    @FXML TableColumn<Lecteur, String> actionsLecteursCol;
 
     ObservableList<Lecteur> listLECTEURS;
 
@@ -97,6 +102,8 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO
+        refrechLecteursTable();
+
         numeroCol.setCellValueFactory(new PropertyValueFactory<Lecteur, Integer>("numero"));
         nomCol.setCellValueFactory(new PropertyValueFactory<Lecteur, String>("nom"));
         prenomCol.setCellValueFactory(new PropertyValueFactory<Lecteur, String>("prenom"));
@@ -104,7 +111,48 @@ public class DashboardController implements Initializable {
         adresseCol.setCellValueFactory(new PropertyValueFactory<Lecteur, String>("adresse"));
         telephoneCol.setCellValueFactory(new PropertyValueFactory<Lecteur, String>("telephone"));
 
-        refrechLecteursTable();
+        Callback<TableColumn<Lecteur, String>, TableCell<Lecteur,String>> cellFActory = (TableColumn<Lecteur, String> param) -> {
+            //Make cell containing buttons
+            final TableCell<Lecteur, String> cell = new TableCell<Lecteur, String>(){
+                @Override
+                public void updateItem(String item, boolean empty){
+                    super.updateItem(item, empty);
+                    //Cell created only on non-empty rows
+                    if(empty){
+                        setGraphic(null);
+                        setText(null);
+                    }else {
+                        Button btnUpdate = new Button("modifier");
+                        Button btnDelete = new Button("supprimer");
+
+                        btnUpdate.setStyle("-fx-cursor: hand;-fx-text-fill: #ffffff ;-fx-background-color: #00BFA6 ");
+                        btnDelete.setStyle("-fx-cursor: hand; -fx-text-fill: #fff ; -fx-background-color:  #F50057 ");
+
+                        btnDelete.setOnMouseClicked((MouseEvent event)->{
+                            Lecteur lecteur = lecteursTable.getSelectionModel().getSelectedItem();
+                            Lecteur.deleteLecteur(lecteur);
+                            refrechLecteursTable();
+                        });
+
+                        btnUpdate.setOnMouseClicked((MouseEvent event)->{
+                            Lecteur lecteur = lecteursTable.getSelectionModel().getSelectedItem();
+                            System.out.println(lecteur.getNom());
+                        });
+
+
+                        HBox managebtn = new HBox(btnUpdate,btnDelete);
+                        managebtn.setStyle("-fx-alignment:center");
+                        HBox.setMargin(btnDelete, new Insets(2, 2, 0, 3));
+                        HBox.setMargin(btnUpdate, new Insets(2, 3, 0, 2));
+                        setGraphic(managebtn);
+                        setText(null);
+                    }
+                }
+            };
+            return cell;
+        };
+        actionsLecteursCol.setCellFactory(cellFActory);
+
     }
 
 

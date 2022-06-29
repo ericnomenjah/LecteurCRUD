@@ -7,10 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -31,7 +29,16 @@ public class DashboardController implements Initializable {
     @FXML
     private Button lecteursBtn;
 
-    
+    @FXML
+    private TextField nomField;
+    @FXML
+    private TextField prenomField;
+    @FXML
+    private DatePicker naissanceField;
+    @FXML
+    private TextField adresseField;
+    @FXML
+    private TextField telephoneField;
 
     @FXML
     private TableView<Lecteur> lecteursTable;
@@ -55,9 +62,6 @@ public class DashboardController implements Initializable {
     ResultSet resultSet = null;
     PreparedStatement preparedStatement = null;
 
-
-
-
     @FXML
     void OnLecteursBtnClicked(ActionEvent event) {
         initButton();
@@ -75,8 +79,19 @@ public class DashboardController implements Initializable {
         PretsBtn.setStyle("-fx-background-color : rgb(0, 176, 255);");
     }
     @FXML
-    void getAddLecteurView(ActionEvent event) {
+    void ajouterLecteurBtnClicked(ActionEvent event) {
+        if(nomField.getText().isBlank() || prenomField.getText().isBlank() || adresseField.getText().isBlank() || telephoneField.getText().isBlank()){
+            Alert alert = new Alert(Alert.AlertType.ERROR,"Veuiller remplir les champs correctement !!");
+            alert.show();
+        }else{
+            Lecteur.addLecteur(nomField,prenomField,naissanceField,adresseField,telephoneField);
+            refrechLecteursTable();
+        }
+    }
 
+    private void refrechLecteursTable() {
+        listLECTEURS = Lecteur.getLecteurs();
+        lecteursTable.setItems(listLECTEURS);
     }
 
     @Override
@@ -89,9 +104,10 @@ public class DashboardController implements Initializable {
         adresseCol.setCellValueFactory(new PropertyValueFactory<Lecteur, String>("adresse"));
         telephoneCol.setCellValueFactory(new PropertyValueFactory<Lecteur, String>("telephone"));
 
-        listLECTEURS = Lecteur.getLecteurs();
-        lecteursTable.setItems(listLECTEURS);
+        refrechLecteursTable();
     }
+
+
     public void initButton(){
         PretsBtn.setStyle("-fx-background-color : transparent;");
         lecteursBtn.setStyle("-fx-background-color : transparent;");

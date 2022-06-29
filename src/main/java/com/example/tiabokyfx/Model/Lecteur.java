@@ -3,11 +3,11 @@ package com.example.tiabokyfx.Model;
 import com.example.tiabokyfx.Database.DatabaseConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 
 public class Lecteur {
 
@@ -17,6 +17,26 @@ public class Lecteur {
     Date naissance;
     String adresse;
     String telephone;
+
+    public static void addLecteur(TextField nomField, TextField prenomField, DatePicker naissanceField, TextField adresseField, TextField telephoneField) {
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "INSERT INTO lecteur (nom,prenom,naissance,adresse,telephone) VALUES (?,?,?,?,?)";
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,nomField.getText());
+            preparedStatement.setString(2,prenomField.getText());
+            preparedStatement.setString(3,String.valueOf(naissanceField.getValue()));
+            preparedStatement.setString(4,adresseField.getText());
+            preparedStatement.setString(5, telephoneField.getText());
+            preparedStatement.execute();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Nouveau lecteur enregistrer :) ");
+            alert.show();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
     public int getNumero() {
         return numero;

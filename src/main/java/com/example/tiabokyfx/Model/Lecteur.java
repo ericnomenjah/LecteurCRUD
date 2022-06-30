@@ -8,6 +8,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 import java.sql.*;
+import java.time.LocalDate;
 
 public class Lecteur {
 
@@ -35,6 +36,26 @@ public class Lecteur {
         } catch (SQLException e) {
             e.printStackTrace();
             e.getCause();
+        }
+    }
+
+    public static void updateLecteur(String numero, String nom, String prenom, LocalDate naissance, String adresse, String telephone){
+        DatabaseConnection databaseConnection = new DatabaseConnection();
+        Connection connection = databaseConnection.getConnection();
+        String query = "UPDATE lecteur SET nom=?,prenom=?,naissance=?,adresse=?,telephone=? WHERE numero =" + numero;
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1,nom);
+            preparedStatement.setString(2,prenom);
+            preparedStatement.setString(3,String.valueOf(naissance));
+            preparedStatement.setString(4,adresse);
+            preparedStatement.setString(5,telephone);
+            preparedStatement.execute();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION,"Lecteur Mis à jour");
+            alert.show();
+        }catch (SQLException exception){
+            exception.printStackTrace();
+            exception.getCause();
         }
     }
 

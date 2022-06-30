@@ -3,19 +3,26 @@ package com.example.tiabokyfx.Controller;
 
 import com.example.tiabokyfx.Database.DatabaseConnection;
 import com.example.tiabokyfx.Model.Lecteur;
+import com.example.tiabokyfx.TiaBokyApplication;
+import com.example.tiabokyfx.Views.EditLecteurForm;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -83,6 +90,12 @@ public class DashboardController implements Initializable {
         initButton();
         PretsBtn.setStyle("-fx-background-color : rgb(0, 176, 255);");
     }
+
+    @FXML
+    void btnlogoutClicked(ActionEvent event){
+        Stage stage = (Stage) PretsBtn.getScene().getWindow();
+        stage.close();
+    }
     @FXML
     void ajouterLecteurBtnClicked(ActionEvent event) {
         if(nomField.getText().isBlank() || prenomField.getText().isBlank() || adresseField.getText().isBlank() || telephoneField.getText().isBlank()){
@@ -98,7 +111,10 @@ public class DashboardController implements Initializable {
         listLECTEURS = Lecteur.getLecteurs();
         lecteursTable.setItems(listLECTEURS);
     }
-
+    @FXML
+    void actualiserLecteurs(MouseEvent event) {
+        refrechLecteursTable();
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //TODO
@@ -136,7 +152,32 @@ public class DashboardController implements Initializable {
 
                         btnUpdate.setOnMouseClicked((MouseEvent event)->{
                             Lecteur lecteur = lecteursTable.getSelectionModel().getSelectedItem();
-                            System.out.println(lecteur.getNom());
+                            //Afficher le MODAL
+                            EditLecteurForm editLecteurForm = new EditLecteurForm();
+
+                            FXMLLoader loader = new FXMLLoader (TiaBokyApplication.class.getResource("editLecteurForm.fxml"));
+
+                            try {
+                                loader.load();
+                            } catch (IOException ex) {
+                                ex.printStackTrace();
+                                ex.getCause();
+                            }
+
+                            EditLecteurFormController editLecteurFormController = loader.getController();
+
+                            editLecteurFormController.setTextField(lecteur.getNumero(),
+                                    lecteur.getNom(),
+                                    lecteur.getPrenom(),
+                                    lecteur.getNaissance().toLocalDate(),
+                                    lecteur.getAdresse(),
+                                    lecteur.getTelephone());
+
+                            Parent parent = loader.getRoot();
+                            Stage stage = new Stage();
+                            stage.setScene(new Scene(parent));
+                            stage.initStyle(StageStyle.UNDECORATED);
+                            stage.show();
                         });
 
 

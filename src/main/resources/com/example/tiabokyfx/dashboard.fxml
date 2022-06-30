@@ -62,6 +62,20 @@
                   <Font name="Verdana" size="14.0" />
                </font>
             </Button>
+            <Button fx:id="logoutbtn" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#btnlogoutClicked" prefHeight="39.0" prefWidth="194.0" style="-fx-background-color: transparent;" text="Quitter" textFill="WHITE">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="5.0" left="50.0" top="5.0" />
+               </padding>
+               <font>
+                  <Font name="Verdana" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="420.0" />
+               </VBox.margin>
+            </Button>
          </children>
       </VBox>
       <TabPane layoutX="201.0" layoutY="8.0" prefHeight="674.0" prefWidth="1049.0" tabClosingPolicy="UNAVAILABLE">
@@ -106,6 +120,11 @@
                            </children>
                         </Pane>
                         <Button fx:id="ajouterLecteurBtn" layoutX="14.0" layoutY="254.0" mnemonicParsing="false" onAction="#ajouterLecteurBtnClicked" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: rgb(0, 176, 255)rgb(0, 176, 255);" text="Ajouter" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="ajouterLecteurBtn1" layoutX="133.0" layoutY="254.0" mnemonicParsing="false" onMouseClicked="#actualiserLecteurs" prefHeight="26.0" prefWidth="105.0" style="-fx-background-color: #63FF7A;" text="Actualiser">
                            <font>
                               <Font size="13.0" />
                            </font>
